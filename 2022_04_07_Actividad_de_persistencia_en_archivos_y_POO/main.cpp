@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-    //Datos del estudiante
+    //Se crea el objeto estudiante
     Student* student = new Student();
     student->setIdentifier(1);
     student->setName("Juan");
@@ -25,7 +25,7 @@ int main()
     attendanceManagement->showAttendance();
 
     
-    //Se vacia la memoria dinámica
+    //Se desasigna la memoria dinámica
     delete student;
     delete course;
     delete attendanceManagement;

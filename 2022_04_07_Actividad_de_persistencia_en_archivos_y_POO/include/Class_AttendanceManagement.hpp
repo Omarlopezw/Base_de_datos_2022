@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "./Class_Student.hpp"
 #include "./Class_Course.hpp"
 

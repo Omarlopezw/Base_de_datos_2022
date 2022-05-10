@@ -5,6 +5,7 @@ void AttendanceManagement::takeAttendance(Student *student,Course *course,string
     //lectura del archivo
     ifstream testFile("AttendanceManagement.csv");
 
+    //Se comprueba si el archivo esta en buen estado
     bool fileStatus = testFile.good();
 
     testFile.close();
@@ -16,24 +17,22 @@ void AttendanceManagement::takeAttendance(Student *student,Course *course,string
     if(!fileStatus)
     {
         //Cabeceras del archivo
-        File << "Nombre, ";
-        File << "Apellido, ";
-        File << "ID del Alumno, ";
-        File << "ID de la materia, ";
-        File << "Materia, ";
-        File << "Fecha, ";
-        File << "Asistencia\n";
+        File    << "Nombre,"
+                << "Apellido,"
+                << "ID-Alumno,"
+                << "ID-Materia,"
+                << "Materia,"
+                << "Fecha,"
+                << "Asistencia\n";
     }
 
-    
-        //Escritura de los datos en el archivo
-        File << student->getName();
-        File << " " << student->getSurname();
-        File << " " << student->getIdentifier();
-        File << " " << course->getIdentifier();
-        File << " " << course->getName();
-        File << " " << datetime;
-        File << " " << state<<endl;
+    File    << student->getName() << ","
+            << student->getSurname() << ","
+            << student->getIdentifier() << ","
+            << course->getIdentifier() << ","
+            << course->getName() << ","
+            << datetime << ","
+            << state << "\n ";
 
     File.close();
 
@@ -42,14 +41,32 @@ void AttendanceManagement::takeAttendance(Student *student,Course *course,string
 void AttendanceManagement::showAttendance()
 {
     ifstream File;
+    string row;
 
     File.open("AttendanceManagement.csv");
 
-    if(File.is_open())
+    bool fileStatus = File.good();
+
+    if(fileStatus)
     {
-        cout << File.rdbuf();
-        
+        //Se recorre el archivo y se muestra por pantalla cada fila
+        while(File >> row)
+        {
+            cout << row <<endl;
+        }
     }
+
+    else
+    {
+        cout << "\nNo se ha encontrado el archivo"<<endl;
+    }
+
+//Otra manera de leer el archivo y mostrarlo por pantalla
+    // if(File.is_open())
+    // {
+    //     cout << File.rdbuf();
+        
+    // }
 
     File.close();
 }
